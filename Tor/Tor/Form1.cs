@@ -12,7 +12,7 @@ namespace Tor
     public partial class Form1 : Form
     {
         Bitmap DrawArea;
-        int metr = 10;
+        float metr = 10;
 
         public Form1()
         {
@@ -45,23 +45,47 @@ namespace Tor
             Pen mypen = new Pen(Brushes.Black);
             reset();
 
-            int r = Convert.ToInt32(textBox1.Text) * metr;
-            int omega = Convert.ToInt32(textBox2.Text);
-            int v = Convert.ToInt32(textBox3.Text);
+            float r = Convert.ToSingle(textBox1.Text) * metr;
+            float omega = Convert.ToSingle(textBox2.Text);
+            float v = Convert.ToSingle(textBox3.Text) * metr;
+            bool two = false;
             g.DrawEllipse(mypen, 220 - (r / 2), 220 - (r / 2), r, r);
             //-------------------------------------------------------
-            double kat = Convert.ToInt32(textBox2.Text);
+            double kat = 90;
 
-            g.DrawLine(
-                mypen, 
-                220, 
-                220, 
-                Convert.ToSingle((r/2 * Math.Cos(kat*Math.PI/180)) + 220), 
-                Convert.ToSingle((r/2 * Math.Sin(kat * Math.PI / 180)) + 220)
-                );
+            do
+            {
+                SetPixel(
+                    g, 
+                    Convert.ToInt32((r / 2 * Math.Cos(kat * Math.PI / 180)) + 220), 
+                    Convert.ToInt32((r / 2 * Math.Sin(kat * Math.PI / 180)) + 220)
+                    );
+
+                if (!two)
+                    r -= v;
+                else
+                    r += v;
+
+                kat += omega;
+                if (kat > 360)
+                    kat = 0;
+
+                if (r <= 0)
+                {
+                    two = true;
+                    r = 0;
+                }
+
+            }
+            while (r != Convert.ToInt32(textBox1.Text) * metr);
 
             pictureBox1.Image = DrawArea;
             g.Dispose();
+        }
+
+        private void SetPixel(Graphics g, int x, int y)
+        {
+            g.FillRectangle(Brushes.Black, new Rectangle(x, y, 1, 1));
         }
     }
 }
