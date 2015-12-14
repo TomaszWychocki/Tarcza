@@ -46,8 +46,19 @@ namespace Tor
             reset();
 
             int r = Convert.ToInt32(textBox1.Text) * metr;
+            int omega = Convert.ToInt32(textBox2.Text);
+            int v = Convert.ToInt32(textBox3.Text);
             g.DrawEllipse(mypen, 220 - (r / 2), 220 - (r / 2), r, r);
             //-------------------------------------------------------
+            double kat = Convert.ToInt32(textBox2.Text);
+
+            g.DrawLine(
+                mypen, 
+                220, 
+                220, 
+                Convert.ToSingle((r/2 * Math.Cos(kat*Math.PI/180)) + 220), 
+                Convert.ToSingle((r/2 * Math.Sin(kat * Math.PI / 180)) + 220)
+                );
 
             pictureBox1.Image = DrawArea;
             g.Dispose();
