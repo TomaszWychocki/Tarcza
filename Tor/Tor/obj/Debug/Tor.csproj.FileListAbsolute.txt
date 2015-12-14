@@ -1,0 +1,10 @@
+c:\users\tomasz\documents\visual studio 2015\Projects\Tor\Tor\bin\Debug\Tor.exe
+c:\users\tomasz\documents\visual studio 2015\Projects\Tor\Tor\bin\Debug\Tor.pdb
+c:\users\tomasz\documents\visual studio 2015\Projects\Tor\Tor\obj\Debug\Tor.csprojResolveAssemblyReference.cache
+c:\users\tomasz\documents\visual studio 2015\Projects\Tor\Tor\obj\Debug\Tor.Form1.resources
+c:\users\tomasz\documents\visual studio 2015\Projects\Tor\Tor\obj\Debug\Tor.Properties.Resources.resources
+c:\users\tomasz\documents\visual studio 2015\Projects\Tor\Tor\obj\Debug\Tor.csproj.GenerateResource.Cache
+c:\users\tomasz\documents\visual studio 2015\Projects\Tor\Tor\obj\Debug\Tor.exe
+c:\users\tomasz\documents\visual studio 2015\Projects\Tor\Tor\obj\Debug\Tor.pdb
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\obj\Debug\Tor.exe
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\obj\Debug\Tor.pdb
