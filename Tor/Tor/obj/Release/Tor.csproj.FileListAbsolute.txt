@@ -1,0 +1,8 @@
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\bin\Release\Tor.exe
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\bin\Release\Tor.pdb
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\obj\Release\Tor.csprojResolveAssemblyReference.cache
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\obj\Release\Tor.Form1.resources
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\obj\Release\Tor.Properties.Resources.resources
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\obj\Release\Tor.csproj.GenerateResource.Cache
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\obj\Release\Tor.exe
+C:\Users\Tomasz\Source\Repos\Tarcza\Tor\Tor\obj\Release\Tor.pdb
