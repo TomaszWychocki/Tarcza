@@ -12,7 +12,7 @@ namespace Tor
     public partial class Form1 : Form
     {
         Bitmap DrawArea;
-        float metr = 10;
+        float metr = 30;
 
         public Form1()
         {
@@ -31,6 +31,36 @@ namespace Tor
             g = Graphics.FromImage(DrawArea);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             g.Clear(Color.Gray);
+            pictureBox1.Image = DrawArea;
+            g.Dispose();
+        }
+
+        private void drawLines()
+        {
+            Graphics g;
+            g = Graphics.FromImage(DrawArea);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            Pen mypen = new Pen(Brushes.Black);
+            g.DrawLine(mypen, 0, pictureBox1.Size.Height / 2, pictureBox1.Size.Width, pictureBox1.Size.Height / 2);
+            g.DrawLine(mypen, pictureBox1.Size.Width / 2, 0, pictureBox1.Size.Width / 2, pictureBox1.Size.Height);
+
+            float f = 0;
+            for(int i = pictureBox1.Size.Width/2; i <= pictureBox1.Size.Width; i+=Convert.ToInt32(metr))
+            {
+                g.DrawLine(mypen, i, (pictureBox1.Size.Height / 2) - 4, i, (pictureBox1.Size.Height / 2) + 4);
+                if(f!=0)
+                    g.DrawString(f.ToString(), new Font("calibri", 10, FontStyle.Regular), Brushes.Black, i-5, (pictureBox1.Size.Height / 2) + 8);
+                f++;
+            }
+            f = 0;
+            for (int i = pictureBox1.Size.Width / 2; i >= 0; i -= Convert.ToInt32(metr))
+            {
+                g.DrawLine(mypen, i, (pictureBox1.Size.Height / 2) - 4, i, (pictureBox1.Size.Height / 2) + 4);
+                if (f != 0)
+                    g.DrawString(f.ToString(), new Font("calibri", 10, FontStyle.Regular), Brushes.Black, i - 9, (pictureBox1.Size.Height / 2) + 8);
+                f--;
+            }
+
             pictureBox1.Image = DrawArea;
             g.Dispose();
         }
@@ -88,11 +118,8 @@ namespace Tor
             Point[] pointArray = pointList.ToArray();
             g.DrawCurve(RedPen, pointArray);
 
-            Pen mypen = new Pen(Brushes.Black);
-            g.DrawLine(mypen, 0, pictureBox1.Size.Height / 2, pictureBox1.Size.Width, pictureBox1.Size.Height / 2);
-            g.DrawLine(mypen, pictureBox1.Size.Width / 2, 0, pictureBox1.Size.Width / 2, pictureBox1.Size.Height);
+            drawLines();
             pictureBox1.Image = DrawArea;
-
             g.Dispose();
         }
 
