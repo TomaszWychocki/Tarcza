@@ -75,8 +75,8 @@ namespace Tor
             reset();
 
             float r = Convert.ToSingle(trackBar1.Value) * metr;
-            float omega = Convert.ToSingle(textBox2.Text);
-            float v = Convert.ToSingle(textBox3.Text) * metr;
+            float omega = Convert.ToSingle(trackBar2.Value);
+            float v = Convert.ToSingle(trackBar3.Value) * metr;
             List<Point> pointList = new List<Point>();
             bool two = false;
             g.FillEllipse(new SolidBrush(Color.LightGray), (pictureBox1.Size.Width / 2) - (r / 2), (pictureBox1.Size.Height / 2) - (r / 2), r, r);
@@ -119,18 +119,6 @@ namespace Tor
             g.Dispose();
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            textBox2.Text = Convert.ToString(Convert.ToDouble(textBox2.Text) + 0.1);
-            Draw();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            textBox2.Text = Convert.ToString(Convert.ToDouble(textBox2.Text) - 0.1);
-            Draw();
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -149,6 +137,18 @@ namespace Tor
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             label1.Text = "Promień tarczy [m]: " + trackBar1.Value;
+            Draw();
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            label2.Text = "Prękość kątowa [rad/s]: " + trackBar2.Value;
+            Draw();
+        }
+
+        private void trackBar3_Scroll(object sender, EventArgs e)
+        {
+            label3.Text = "Prędkość obiektu [m/s]: " + trackBar3.Value;
             Draw();
         }
     }
