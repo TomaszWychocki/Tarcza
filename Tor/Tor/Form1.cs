@@ -23,6 +23,7 @@ namespace Tor
         private void Form1_Load(object sender, EventArgs e)
         {
             reset();
+            Draw();
         }
 
         private void reset()
@@ -65,11 +66,6 @@ namespace Tor
             g.Dispose();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Draw();
-        }
-
         private void Draw()
         {
             Graphics g;
@@ -78,7 +74,7 @@ namespace Tor
             Pen RedPen = new Pen(Brushes.Blue, 2);
             reset();
 
-            float r = Convert.ToSingle(textBox1.Text) * metr;
+            float r = Convert.ToSingle(trackBar1.Value) * metr;
             float omega = Convert.ToSingle(textBox2.Text);
             float v = Convert.ToSingle(textBox3.Text) * metr;
             List<Point> pointList = new List<Point>();
@@ -113,7 +109,7 @@ namespace Tor
                     Convert.ToInt32((r / 2 * Math.Sin(kat * Math.PI / 180)) + (pictureBox1.Size.Height / 2))
                     ));
             }
-            while (r < Convert.ToInt32(textBox1.Text) * metr);
+            while (r < Convert.ToInt32(trackBar1.Value) * metr);
 
             Point[] pointArray = pointList.ToArray();
             g.DrawCurve(RedPen, pointArray);
@@ -148,6 +144,12 @@ namespace Tor
             groupBox1.Location = new Point(Size.Width - 223, 12);
             button4.Location = new Point(Size.Width - 87, Size.Height - 51);
             label4.Location = new Point(Size.Width - 138, Size.Height - 25);
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            label1.Text = "Promień tarczy [m]: " + trackBar1.Value;
+            Draw();
         }
     }
 }
