@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -40,10 +41,39 @@ namespace Tor
         {
             Graphics g;
             g = Graphics.FromImage(DrawArea);
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
             Pen mypen = new Pen(Brushes.Black);
+            Pen arrow = new Pen(Brushes.Black, 8);
             g.DrawLine(mypen, 0, pictureBox1.Size.Height / 2, pictureBox1.Size.Width, pictureBox1.Size.Height / 2);
             g.DrawLine(mypen, pictureBox1.Size.Width / 2, 0, pictureBox1.Size.Width / 2, pictureBox1.Size.Height);
+
+            float r = Convert.ToSingle(trackBar1.Value) * metr;
+            r += 40;
+
+            if (Convert.ToSingle(trackBar2.Value) > 0)
+            {
+                arrow.StartCap = LineCap.ArrowAnchor;
+                g.DrawArc(
+                    arrow,
+                    (pictureBox1.Size.Width / 2) - (r / 2), 
+                    (pictureBox1.Size.Height / 2) - (r / 2),
+                    Convert.ToInt32(r),
+                    Convert.ToInt32(r), 
+                    220, 
+                    20);
+            }
+            else if(Convert.ToSingle(trackBar2.Value) != 0)
+            {
+                arrow.EndCap = LineCap.ArrowAnchor;
+                g.DrawArc(
+                    arrow,
+                    (pictureBox1.Size.Width / 2) - (r / 2),
+                    (pictureBox1.Size.Height / 2) - (r / 2),
+                    Convert.ToInt32(r),
+                    Convert.ToInt32(r),
+                    220,
+                    20);
+            }
 
             float f = 0;
             for(int i = pictureBox1.Size.Width/2; i <= pictureBox1.Size.Width; i+=Convert.ToInt32(metr))
@@ -60,6 +90,23 @@ namespace Tor
                 if (f != 0)
                     g.DrawString(f.ToString(), new Font("calibri", 10, FontStyle.Regular), Brushes.Black, i - 9, (pictureBox1.Size.Height / 2) + 8);
                 f--;
+            }
+
+            f = 0;
+            for (int i = pictureBox1.Size.Height / 2; i <= pictureBox1.Size.Height; i += Convert.ToInt32(metr))
+            {
+                g.DrawLine(mypen, (pictureBox1.Size.Width / 2) - 4, i, (pictureBox1.Size.Width / 2) + 4, i);
+                if (f != 0)
+                    g.DrawString(f.ToString(), new Font("calibri", 10, FontStyle.Regular), Brushes.Black, (pictureBox1.Size.Width / 2) + 8, i-9);
+                f--;
+            }
+            f = 0;
+            for (int i = pictureBox1.Size.Height / 2; i >= 0; i -= Convert.ToInt32(metr))
+            {
+                g.DrawLine(mypen, (pictureBox1.Size.Width / 2) - 4, i, (pictureBox1.Size.Width / 2) + 4, i);
+                if (f != 0)
+                    g.DrawString(f.ToString(), new Font("calibri", 10, FontStyle.Regular), Brushes.Black, (pictureBox1.Size.Width / 2) + 8, i - 9);
+                f++;
             }
 
             pictureBox1.Image = DrawArea;
@@ -104,10 +151,16 @@ namespace Tor
                     r = 0;
                 }
 
+                if (r > Convert.ToSingle(trackBar1.Value) * metr)
+                    r = Convert.ToSingle(trackBar1.Value) * metr;
+
                 pointList.Add(new Point(
                     Convert.ToInt32((r / 2 * Math.Cos(kat * Math.PI / 180)) + (pictureBox1.Size.Width / 2)),
                     Convert.ToInt32((r / 2 * Math.Sin(kat * Math.PI / 180)) + (pictureBox1.Size.Height / 2))
                     ));
+
+                if (r == Convert.ToSingle(trackBar1.Value) * metr)
+                    break;
             }
             while (r < Convert.ToInt32(trackBar1.Value) * metr);
 
