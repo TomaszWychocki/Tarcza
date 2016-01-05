@@ -118,7 +118,7 @@ namespace Tor
             Graphics g;
             g = Graphics.FromImage(DrawArea);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-            Pen RedPen = new Pen(Brushes.Blue, 2);
+            Pen BluePen = new Pen(Brushes.Blue, 2);
             reset();
 
             float r = Convert.ToSingle(trackBar1.Value) * metr;
@@ -137,11 +137,11 @@ namespace Tor
             do
             {
                 if (!two)
-                    r -= v;
+                    r -= v/5;
                 else
-                    r += v;
+                    r += v/5;
 
-                kat += omega;
+                kat += omega/5;
                 if (kat == 360)
                     kat = 0;
 
@@ -165,7 +165,7 @@ namespace Tor
             while (r < Convert.ToInt32(trackBar1.Value) * metr);
 
             Point[] pointArray = pointList.ToArray();
-            g.DrawCurve(RedPen, pointArray);
+            g.DrawCurve(BluePen, pointArray, 0.3f);
 
             drawLines();
             pictureBox1.Image = DrawArea;
